@@ -24,7 +24,7 @@ import time
 import platform
 import subprocess
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 request_logs = []
 DD = 'tmp'
