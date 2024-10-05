@@ -1,3 +1,4 @@
 selenium
 flask
 aspose-words
+requests
