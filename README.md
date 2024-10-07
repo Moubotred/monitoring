@@ -8,9 +8,9 @@ El proyecto ayuda con la gestion del sistema de envios de la web hasber conbinan
 #### POST Rutas
 
 ```http
-  POST api/process_supply
-  POST api/process_convert_pdf
-  POST api/process_image_a_pdf
+POST api/process_supply
+POST api/process_convert_pdf
+POST api/process_image_a_pdf
 ```
 
 
