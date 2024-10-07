@@ -190,6 +190,6 @@ Comando /i es neserio adjuntar la foto del suministro el cual reconoce los numer
 
 ## Soporte
 
-el proyecto aun esta en desarrollo por los que algunas rutas de index.js se deben modificar manualmentene la vps si tiene errores comunicarse a fasesarnamer@gmai.com
+el proyecto aun esta en desarrollo por los que algunas rutas de index.js se deben modificar manualmentene la vps si tiene errores comunicarse a fasesarnamer@gmail.com
 
 
