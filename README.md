@@ -1,4 +1,6 @@
 
+![Logo](https://raw.githubusercontent.com/Moubotred/monitoring/main/ico/image(1).png)
+
 # Monitoring
 
 El proyecto ayuda con la gestion del sistema de envios de la web hasber conbinando un bot simple escrito en js que monitorea el chats y cuando se se le hacen consultas con un comando y responde deacuerdor al comando
