@@ -182,7 +182,7 @@ Comando /D este comando envia pdf de la carta
 /s 7998
 ```
 
-Comando /i es neserio adjuntar la foto del suministro el cual reconoce los numero y busca la carta y devuele en pdf
+Comando /i es necesario adjuntar la foto del suministro el cual reconoce los numero y busca la carta y devuele en pdf
 ```bash
 /i [file]
 ```
