@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const { exec } = require('child_process');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
@@ -7,6 +9,11 @@ const utils = require('./utils');
 const suscriptores = {};
 
 let archivoSuscriptores = './suscriptores.json';
+
+const Chance = require('chance');
+const chance = new Chance();
+const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
+
 
 // Initialize the client with proper Puppeteer options
 const client = new Client({
