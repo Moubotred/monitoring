@@ -157,7 +157,8 @@ Comando /help brinda ayuda con los comandos
         └ /t solicitar carta por foto
             └ ⚜ Ejemplo de uso :
             ├ /s 1337535
-            └ /d 1337535   
+            └ /d 1337535
+            └ /i [file]
             
         ⚜ Reportes o mejoras: 
         ├
