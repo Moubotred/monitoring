@@ -1,5 +1,8 @@
 # dependias de js
 node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+logs.txt
 
 # entornode de python
 py/bin/
