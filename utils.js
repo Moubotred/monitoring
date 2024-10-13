@@ -5,23 +5,22 @@ const {MessageMedia } = require('whatsapp-web.js');
 function help(message) {
     // const banner = '🤖 Bienvenido al bot:\n\ncomandos:\n\n/lg suscribir al bot\n/s obtener url\n/d obtener pdf';
     const banner = `👑 Fundador:
-        └ @Tony 
+        └ @L.T.A 
     ⚜ Descripcion:
-    ├
-    ├ bot creado para 
-    ├ realizar consultas
-    └ al sitio hasber
+    ├   La Herramienta ayuda
+    ├   con la gestion de  
+    └   consultas de hasber   
 
     ⚜ Comandos:
     ├
     ├ /lg regitrar usuario 
     ├ /s solicitar url de carta
     ├ /d solicitar pdf de carta
-    └ /t solicitar carta por foto
+    └ /i solicitar carta por foto
         └ ⚜ Ejemplo de uso :
             ├ /s 1337535
-            └ /d 1337535   
-            
+            └ /d 1337535
+            └ /i [file]
     ⚜ Reportes o mejoras: 
     ├
     ├ ayudame a mejor el bot 
@@ -58,7 +57,7 @@ function sendfile(evalue,numero,message){
         message.reply(`Suministro No Existe`);
 
     } else if (evalue.trim().endsWith('.pdf')) {
-        const pdf = MessageMedia.fromFilePath(`${__dirname}/../py/pdf/${numero}.pdf`);
+        const pdf = MessageMedia.fromFilePath(`${__dirname}/py/pdf/${numero}.pdf`);
         message.reply(`Respuesta: ${evalue}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envio existoso ${evalue}`);
     }
@@ -75,7 +74,7 @@ function execution_cmd(suministro, mode, message) {
     }
 
     return new Promise((resolve, reject) => {
-        exec(`python3 /home/kimshizi/Documents/test/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
+        exec(`python3 /home/puppeteeruser/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error ejecutando el script: ${error.message}`);
                 reject(error);
