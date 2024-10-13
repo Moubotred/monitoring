@@ -1,6 +1,4 @@
-
 const fs = require('fs');
-
 const { exec } = require('child_process');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
