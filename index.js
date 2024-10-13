@@ -6,7 +6,6 @@ const { exec } = require('child_process');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
-
 const chance = new Chance();
 const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 const username = os.userInfo().username;
@@ -15,7 +14,7 @@ const archivoSuscriptores = './suscriptores.json';
 // correccion temporal de registro de usuarios 
 // error sucede cuando se detiene el script y se inicia 
 // nuavemete se debe registra nuevamente para poder usar los comandos
-const suscriptores = {};
+let suscriptores = {};
 if (fs.existsSync(archivoSuscriptores)) {
     const data = fs.readFileSync(archivoSuscriptores, 'utf8');
     try {
