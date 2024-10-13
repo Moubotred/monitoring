@@ -2,6 +2,8 @@ const {exec} = require('child_process');
 const fs = require('fs');
 const {MessageMedia } = require('whatsapp-web.js');
 
+
+
 function help(message) {
     // const banner = '🤖 Bienvenido al bot:\n\ncomandos:\n\n/lg suscribir al bot\n/s obtener url\n/d obtener pdf';
     const banner = `👑 Fundador:
