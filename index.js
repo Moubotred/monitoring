@@ -54,7 +54,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    const contact = await menssage.getContact();
+    // const contact = await menssage.getContact();
     utils.logMessageToFile(`By: Message: ${message.body}`);
 
     if (message.body === '/help'){
