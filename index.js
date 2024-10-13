@@ -26,6 +26,7 @@ const archivoSuscriptores = './suscriptores.json';
 // correccion temporal de registro de usuarios 
 // error sucede cuando se detiene el script y se inicia 
 // nuavemete se debe registra nuevamente para poder usar los comandos
+
 let suscriptores = {};
 if (fs.existsSync(archivoSuscriptores)) {
     const data = fs.readFileSync(archivoSuscriptores, 'utf8');
