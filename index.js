@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 const fs = require('fs');
 
 const { exec } = require('child_process');
@@ -15,14 +12,23 @@ const chance = new Chance();
 const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
 
-const suscriptores = {};
+// const suscriptores = {};
 
-let archivoSuscriptores = './suscriptores.json';
+const archivoSuscriptores = './suscriptores.json';
 
-const Chance = require('chance');
-const chance = new Chance();
-const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
+// const Chance = require('chance');
+// const chance = new Chance();
+// const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
+let suscriptores = {};
+if (fs.existsSync(archivoSuscriptores)) {
+    const data = fs.readFileSync(archivoSuscriptores, 'utf8');
+    try {
+        suscriptores = JSON.parse(data);
+    } catch (error) {
+        console.error('Error al parsear suscriptores:', error);
+    }
+}
 
 // Initialize the client with proper Puppeteer options
 const client = new Client({
