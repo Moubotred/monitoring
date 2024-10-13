@@ -54,8 +54,10 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    // const contact = await menssage.getContact();
-    utils.logMessageToFile(`By: Message: ${message.body}`);
+    const contact = await message.getContact();
+    const contactName = contact.pushname || contact.notifyName || 'Undefined';
+
+    utils.logMessageToFile(`By:${contactName} Message: ${message.body}`);
 
     if (message.body === '/help'){
         utils.help(message)
@@ -67,8 +69,8 @@ client.on('message', async message => {
 
     if (suscriptores[message.from] === true){
         // Verificar si el comando /s tiene al menos dos partes y el argumento no está vacío
-        const contact = await message.getContact();
-        const contactName = contact.pushname || contact.notifyName || 'Undefined';
+        // const contact = await message.getContact();
+        // const contactName = contact.pushname || contact.notifyName || 'Undefined';
         const partes = message.body.split(' ');
         const suministro = message.body.split(' ')[1];        
 
