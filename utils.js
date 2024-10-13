@@ -1,8 +1,9 @@
 const {exec} = require('child_process');
 const fs = require('fs');
 const {MessageMedia } = require('whatsapp-web.js');
+const os = require('os');
 
-
+const username = os.userInfo().username;
 
 function help(message) {
     // const banner = '🤖 Bienvenido al bot:\n\ncomandos:\n\n/lg suscribir al bot\n/s obtener url\n/d obtener pdf';
@@ -76,7 +77,7 @@ function execution_cmd(suministro, mode, message) {
     }
 
     return new Promise((resolve, reject) => {
-        exec(`python3 /home/puppeteeruser/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
+        exec(`python3 /home/${username}/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error ejecutando el script: ${error.message}`);
                 reject(error);
