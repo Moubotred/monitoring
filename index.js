@@ -15,7 +15,7 @@ const archivoSuscriptores = './suscriptores.json';
 // correccion temporal de registro de usuarios 
 // error sucede cuando se detiene el script y se inicia 
 // nuavemete se debe registra nuevamente para poder usar los comandos
-const suscriptores = {};
+let suscriptores = {};
 if (fs.existsSync(archivoSuscriptores)) {
     const data = fs.readFileSync(archivoSuscriptores, 'utf8');
     try {
@@ -55,7 +55,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    const contact = await menssage.getContact();
+    // const contact = await menssage.getContact();
     utils.logMessageToFile(`By: Message: ${message.body}`);
 
     if (message.body === '/help'){
