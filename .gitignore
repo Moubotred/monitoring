@@ -1,0 +1,10 @@
+# dependias de js
+node_modules/
+
+# entornode de python
+py/bin/
+py/include/  
+py/lib/  
+py/lib64/  
+py/__pycache__/
+pyvenv.cfg  
