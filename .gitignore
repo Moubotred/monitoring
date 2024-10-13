@@ -17,4 +17,5 @@ py/lib64
 py/pdf/
 py/test.py
 py/tmp/
+py/share/
 suscriptores.json
