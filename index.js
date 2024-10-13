@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const os = require('os');
 const { exec } = require('child_process');
@@ -14,20 +13,17 @@ const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
 const username = os.userInfo().username;
 
-// const suscriptores = {};
-
 const archivoSuscriptores = './suscriptores.json';
-
-// const Chance = require('chance');
-// const chance = new Chance();
-// const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
-
 
 // correccion temporal de registro de usuarios 
 // error sucede cuando se detiene el script y se inicia 
 // nuavemete se debe registra nuevamente para poder usar los comandos
+<<<<<<< HEAD
 
 let suscriptores = {};
+=======
+const suscriptores = {};
+>>>>>>> a188178 (borrando lineas relevantes)
 if (fs.existsSync(archivoSuscriptores)) {
     const data = fs.readFileSync(archivoSuscriptores, 'utf8');
     try {
