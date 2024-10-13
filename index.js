@@ -1,4 +1,6 @@
+
 const fs = require('fs');
+const os = require('os');
 const { exec } = require('child_process');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
@@ -10,6 +12,8 @@ const chance = new Chance();
 const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
 
+const username = os.userInfo().username;
+
 // const suscriptores = {};
 
 const archivoSuscriptores = './suscriptores.json';
@@ -18,6 +22,10 @@ const archivoSuscriptores = './suscriptores.json';
 // const chance = new Chance();
 // const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
+
+// correccion temporal de registro de usuarios 
+// error sucede cuando se detiene el script y se inicia 
+// nuavemete se debe registra nuevamente para poder usar los comandos
 let suscriptores = {};
 if (fs.existsSync(archivoSuscriptores)) {
     const data = fs.readFileSync(archivoSuscriptores, 'utf8');
@@ -58,8 +66,8 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-
-    console.log('[+] mensaje: ',message.body);
+    const contact = await menssage.getContact();
+    utils.logMessageToFile(`By: Message: ${message.body}`);
 
     if (message.body === '/help'){
         utils.help(message)
@@ -84,12 +92,12 @@ client.on('message', async message => {
                 if (media) {
                     // Guarda la imagen en el disco
                     const fileName = chance.string({ length: 7, pool:'1234567'}) + '.jpg';
-                    fs.writeFileSync(`/home/puppeteeruser/monitoring/py/tmp/${fileName}`, media.data, 'base64');
+                    fs.writeFileSync(`/home/${username}/monitoring/py/tmp/${fileName}`, media.data, 'base64');
     
                     const value = utils.execution_cmd(fileName,'apiImg',message)
                         .then(resultado=>{
                             if (resultado.trim().endsWith('.pdf')) {
-                                const pdf = MessageMedia.fromFilePath(`/home/puppeteeruser/monitoring/py/pdf/${resultado}`.trim());
+                                const pdf = MessageMedia.fromFilePath(`/home/${username}/monitoring/py/pdf/${resultado}`.trim());
                                 message.reply(`Respuesta: ${resultado}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
                                 console.log(`ReponsePython: envio existoso ${resultado}`);
                             }
