@@ -10,7 +10,6 @@ const Chance = require('chance');
 const chance = new Chance();
 const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
 
-
 const username = os.userInfo().username;
 
 const archivoSuscriptores = './suscriptores.json';
