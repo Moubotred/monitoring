@@ -93,7 +93,9 @@ def pdf_converter(response, supply):
     result = response.json()
     result_url = result.get('result')
     url_ = Rb.UrlSubdoc(result_url)
+    print('....%')
     filename = Rb.FileWebDownloads(url_, supply)
+    print('........%')
     ff = Rb.ConvertPdf(filename)
     Rb.Templades(ff)
     return ff
@@ -137,7 +139,7 @@ def init_browser():
     """
     global driver, wait
     options = Options()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     driver = webdriver.Firefox(options=options)
     wait = WebDriverWait(driver, 60)
     try:

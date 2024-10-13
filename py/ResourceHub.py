@@ -89,6 +89,7 @@ def FileWebDownloads(url, suministro):
         return None
 
 def ConvertPdf(filename):
+    #os.environ['DOTNET_SYSTEM_GLOBALIZATION_INVARIANT'] = '1'
     if filename:
         doc = aw.Document()
         builder = aw.DocumentBuilder(doc)
@@ -101,7 +102,7 @@ def ConvertPdf(filename):
 
 def Templades(pdf_filename):
     if pdf_filename:
-        path = f'/home/{getuser()}/Documents/test/py/pdf'
+        path = f'/home/{getuser()}/monitoring/py/pdf'
         os.makedirs(path, exist_ok=True)
 
         shutil.move(pdf_filename, os.path.join(path, pdf_filename))
@@ -301,3 +302,5 @@ def GoogleLents(driver,wait,tunnel,filename):
     driver.switch_to.window(driver.window_handles[0])    
     
     return list_information[0] 
+
+#FileWebDownloads('https://sistema.easyenvios.com/servidor//017//001//31//26072404//01/00126072404001210.TIF','470528')

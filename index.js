@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 const fs = require('fs');
 
 const { exec } = require('child_process');
@@ -5,6 +9,11 @@ const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
 const utils = require('./utils');
+
+const Chance = require('chance');
+const chance = new Chance();
+const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
+
 
 const suscriptores = {};
 
@@ -45,6 +54,9 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+
+    console.log('[+] mensaje: ',message.body);
+
     if (message.body === '/help'){
         utils.help(message)
     }
@@ -53,34 +65,7 @@ client.on('message', async message => {
         utils.guardarSuscriptores(archivoSuscriptores, suscriptores, message);
     }
 
-    // else if (suscriptores[message.from] === true && message.body.startsWith('/i') && message.hasMedia) {
-    //     if (message.hasMedia) {
-    //         const media = await message.downloadMedia();
-    //         if (media) {
-    //             // Guarda la imagen en el disco
-    //             const fileName = chance.string({ length: 7, pool:'1234567'}) + '.jpg';
-    //             fs.writeFileSync(`/home/kimshizi/Documents/test/py/tmp/${fileName}`, media.data, 'base64');
-
-    //             const value = utils.execution_cmd(fileName,'apiImg',message)
-    //                 .then(resultado=>{
-    //                     if (resultado.trim().endsWith('.pdf')) {
-    //                         const pdf = MessageMedia.fromFilePath(`/home/kimshizi/Documents/test/py/pdf/${resultado}`.trim());
-    //                         message.reply(`Respuesta: ${resultado}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
-    //                         console.log(`ReponsePython: envio existoso ${resultado}`);
-    //                     }
-    //                     // message.reply(`Respuesta: ${resultado}`);
-    //                     // console.log(`ReponsePython: ${resultado}`);
-    //                 })
-
-    //                 .catch(error =>{
-    //                     console.log(`ReponsePython: ${error}`);
-    //                 })
-
-    //         }
-    //     }
-    // }
-
-    else if (suscriptores[message.from] === true){
+    if (suscriptores[message.from] === true){
         // Verificar si el comando /s tiene al menos dos partes y el argumento no está vacío
         const contact = await message.getContact();
         const contactName = contact.pushname || contact.notifyName || 'Undefined';
@@ -95,12 +80,12 @@ client.on('message', async message => {
                 if (media) {
                     // Guarda la imagen en el disco
                     const fileName = chance.string({ length: 7, pool:'1234567'}) + '.jpg';
-                    fs.writeFileSync(`/home/kimshizi/Documents/test/py/tmp/${fileName}`, media.data, 'base64');
+                    fs.writeFileSync(`/home/puppeteeruser/monitoring/py/tmp/${fileName}`, media.data, 'base64');
     
                     const value = utils.execution_cmd(fileName,'apiImg',message)
                         .then(resultado=>{
                             if (resultado.trim().endsWith('.pdf')) {
-                                const pdf = MessageMedia.fromFilePath(`/home/kimshizi/Documents/test/py/pdf/${resultado}`.trim());
+                                const pdf = MessageMedia.fromFilePath(`/home/puppeteeruser/monitoring/py/pdf/${resultado}`.trim());
                                 message.reply(`Respuesta: ${resultado}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
                                 console.log(`ReponsePython: envio existoso ${resultado}`);
                             }
