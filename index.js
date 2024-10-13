@@ -1,19 +1,15 @@
-// comnetario de prueba
-
 const fs = require('fs');
 const os = require('os');
+const Chance = require('chance');
+const utils = require('./utils');
 const { exec } = require('child_process');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
-const utils = require('./utils');
 
-const Chance = require('chance');
 const chance = new Chance();
 const fileName = chance.string({ length: 7, pool: '1234567' }) + '.jpg';
-
 const username = os.userInfo().username;
-
 const archivoSuscriptores = './suscriptores.json';
 
 // correccion temporal de registro de usuarios 
@@ -106,10 +102,6 @@ client.on('message', async message => {
             }
         }
 
-        // console.log(suministro);
-        // if (partes.length < 2 || partes[1].trim() === '') {
-            // utils.argument_management(partes,message)
-        // }
         if (!isNaN(suministro) && suministro.length >= 1 && suministro.length <= 7) {
 
             console.log(`by: ${contactName}`);
@@ -139,19 +131,7 @@ client.on('message', async message => {
                     .catch(error =>{
                         console.log(error);
                     })
-            }
-            
-            // if (message.body.startsWith('/i') && message.hasMedia) {
-            //     if (message.hasMedia) {
-            //         const media = await message.downloadMedia();
-            //         if (media) {
-            //             // Guarda la imagen en el disco
-            //             fs.writeFileSync('/home/kimshizi/Documents/test/py/tmp/over.jpg', media.data, 'base64');
-            //             console.log('Imagen descargada');
-            //         }
-            //     }
-            // }
-                    
+            }                    
         }
 
     }
