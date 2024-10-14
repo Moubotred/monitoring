@@ -59,7 +59,7 @@ def main():
     parser = argparse.ArgumentParser(description="Herramienta de utilidad para procesar datos.")
     
     parser.add_argument('sum', type=str, help='Valor de suma o identificador.')
-    parser.add_argument('--mode', type=str, choices=['apiUrl', 'apiDoc','apiImg'], required=True,
+    parser.add_argument('--mode', type=str, choices=['apiUrl', 'apiDoc','apiImg','apiRec'], required=True,
                         help="Modo de operación: 'apiUrl' para consultar la API o verificar caché, 'apiDoc' para descargar y convertir.")
 
     args = parser.parse_args()
