@@ -153,6 +153,7 @@ def ConsultaApiLds(suministro):
         shutil.move(os.path.join(os.getcwd(),numero_S),os.path.join(imagenes,numero_S))
     else:
         os.makedirs(imagenes)
+        ConsultaApiLds(suministro)
 
 def Directorios(directorio):
     def Servidor(func):
