@@ -11,7 +11,6 @@ const client = new Client({
     }
 });
 
-
 client.on('qr', qr => {
     // Genera el código QR para la autenticación
     qrcode.generate(qr, { small: true });
