@@ -66,11 +66,17 @@ function sendfile(evalue,numero,message){
         const pdf = MessageMedia.fromFilePath(`${__dirname}/py/pdf/${numero}.pdf`);
         message.reply(`Respuesta: ${evalue}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envio existoso ${evalue}`);
-    }
+
+    } else if (evalue.trim().endsWith('.png')) {
+        const imagePath = `${__dirname}/BetaApiLds/imagenes/${numero}.${evalue.trim().split('.').pop()}`;
+        const image = MessageMedia.fromFilePath(imagePath);
+        message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
+        console.log(`ReponsePython: envío exitoso ${evalue}`);
 
         // else{
         //     message.reply(`Respuesta: ${stdout.trim()}`);
-        // };
+        
+        };
     }
 
 function execution_cmd(suministro, mode, message) {
@@ -128,7 +134,6 @@ function logMessageToFile(message, type = 'info') {
         }
     });
 }
-
 
 module.exports = {
     help,
