@@ -36,10 +36,10 @@ def Recibo(suministro):
             with open(f"{suministro}.png", "wb") as img_file:
                 img_file.write(base64.b64decode(imagen_base64))
             
-            print(f"{suministro}.png")
+            return f"{suministro}.png"
         else:
             print("Error en la respuesta de la API:", data.get("mensajeUsuario", "No se proporcionó mensaje de error"))
     else:
         print(f"Error en la solicitud: {response.status_code}")
 
-Recibo('143355')
+# Recibo('143355')
