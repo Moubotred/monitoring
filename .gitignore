@@ -20,4 +20,4 @@ py/tmp/
 py/share/
 suscriptores.json
 
-BetaApiLds/
+BetaApiLds/__pycache__/
