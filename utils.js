@@ -70,7 +70,7 @@ function sendfile(evalue,numero,message){
     } else if (evalue.trim().endsWith('.png')) {
         const imagePath = `${__dirname}/BetaApiLds/imagenes/${numero}.${evalue.trim().split('.').pop()}`;
         const image = MessageMedia.fromFilePath(imagePath);
-        message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
+        message.reply(`Respuesta: ${evalue}`, undefined, { image: image, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envío exitoso ${evalue}`);
 
         // else{
