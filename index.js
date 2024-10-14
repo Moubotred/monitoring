@@ -132,7 +132,19 @@ client.on('message', async message => {
                     .catch(error =>{
                         console.log(error);
                     })
-            }                    
+            }
+            
+            if (message.body.startsWith('/r ')) {
+    
+                const value = utils.execution_cmd(suministro,'apiRec',message)
+                    .then(resultado =>{
+                        utils.sendfile(resultado,suministro,message)
+                    })
+    
+                    .catch(error =>{
+                        console.log(error);
+                    })
+            }
         }
 
     }
