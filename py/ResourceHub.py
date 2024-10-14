@@ -147,7 +147,7 @@ def ConsultApi(ip, port, endpoint, key_data, suministro):
 
 def ConsultaApiLds(suministro):
     home_dir = os.path.expanduser('~')
-    imagenes = os.path.join(home_dir,'Monitoring','BetaApiLds','imagenes')
+    imagenes = os.path.join(home_dir,'monitoring','BetaApiLds','imagenes')
     if os.path.exists(imagenes) == True: 
         numero_S = api.Recibo(suministro)
         shutil.move(os.path.join(os.getcwd(),numero_S),os.path.join(imagenes,numero_S))
