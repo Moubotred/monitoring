@@ -24,8 +24,11 @@ import time
 import platform
 import subprocess
 
-import BetaApiLds as Recibo
-#from dotenv import load_dotenv
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from BetaApiLds import api
+import shutil
 
 request_logs = []
 DD = 'tmp'
@@ -143,7 +146,13 @@ def ConsultApi(ip, port, endpoint, key_data, suministro):
     return None
 
 def ConsultaApiLds(suministro):
-    Recibo(suministro)
+    home_dir = os.path.expanduser('~')
+    imagenes = os.path.join(home_dir,'Monitoring','BetaApiLds','imagenes')
+    if os.path.exists(imagenes) == True: 
+        numero_S = api.Recibo(suministro)
+        shutil.move(os.path.join(os.getcwd(),numero_S),os.path.join(imagenes,numero_S))
+    else:
+        os.makedirs(imagenes)
 
 def Directorios(directorio):
     def Servidor(func):
