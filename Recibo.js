@@ -4,7 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 // Inicializa el cliente de WhatsApp
-const client = new Client();
+const client = new Client({
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
+});
+
 
 client.on('qr', qr => {
     // Genera el código QR para la autenticación
