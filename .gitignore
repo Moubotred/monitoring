@@ -21,3 +21,5 @@ py/share/
 suscriptores.json
 
 BetaApiLds/__pycache__/
+
+*.png
