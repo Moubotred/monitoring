@@ -24,6 +24,7 @@ import time
 import platform
 import subprocess
 
+import BetaApiLds as Recibo
 #from dotenv import load_dotenv
 
 request_logs = []
@@ -140,6 +141,9 @@ def ConsultApi(ip, port, endpoint, key_data, suministro):
         print(f'Error URL: {e.reason}')
     
     return None
+
+def ConsultaApiLds(suministro):
+    Recibo(suministro)
 
 def Directorios(directorio):
     def Servidor(func):
