@@ -30,6 +30,20 @@ def apiImg(sum_value):
     raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)    
     print(raw_url)
     
+def apiRec(sum_value):
+    """
+    Función de consulta recibo de su suministro buscando en la web de lds.
+
+    Parameters:
+    sum_value (str): El valor de entrada del suministro
+    
+    Returns:
+    None: Esta función aún no tiene implementación.
+    """
+    
+    raw_url = Rb.ConsultaApiLds(sum_value)    
+    print(raw_url)
+
 def main():
     """
     Función principal que utiliza argparse para parsear los argumentos de la línea de comandos.
@@ -56,6 +70,8 @@ def main():
         apiDoc(args.sum)
     elif args.mode == 'apiImg':
         apiImg(args.sum)
+    elif args.mode == 'apiRec':
+        apiRec(args.sum)
 
 if __name__ == '__main__':
     main()
