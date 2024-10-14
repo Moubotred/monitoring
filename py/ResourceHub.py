@@ -151,6 +151,7 @@ def ConsultaApiLds(suministro):
     if os.path.exists(imagenes) == True: 
         numero_S = api.Recibo(suministro)
         shutil.move(os.path.join(os.getcwd(),numero_S),os.path.join(imagenes,numero_S))
+        return numero_S
     else:
         os.makedirs(imagenes)
         ConsultaApiLds(suministro)
