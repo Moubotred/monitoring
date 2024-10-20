@@ -28,3 +28,4 @@ BetaApiLds/auth_where.py
 BetaApiLds/test_hasber.py
 BetaApiLds/test_data_reniec.py
 *.png
+*.txt
