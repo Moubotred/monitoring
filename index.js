@@ -222,7 +222,7 @@ client.on('message_create', async (message) => {
     
             if (!isNaN(suministro) && suministro.length >= 1 && suministro.length <= 7) {
     
-                console.log(`by: ${contactName}`);
+                // console.log(`by: ${contactName}`);
                 console.log('Command:',message.body);
     
                 if (message.body.startsWith('/s ')) {
