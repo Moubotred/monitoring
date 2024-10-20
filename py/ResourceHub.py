@@ -289,33 +289,6 @@ def Apilocalngrok():
         print("[!] Asegúrate de que ngrok esté en ejecución manualmnete")
     except Exception as e:
         print(f"[!] Error al obtener los túneles: {str(e)}")
-
-@deprecated(reason='necesitas la funcion de pago para poder usar esta funcion')
-def ServicioNgrok():
-    # Cargar el archivo .env
-    load_dotenv(dotenv_path='/home/kimshizi/Documents/test/py/token.env')
-    # Obtener el token de acceso desde el archivo .env
-    token_ngrok = os.getenv('access')
-    ngrok.set_auth_token(token_ngrok)  # Asegúrate de establecer el token antes de conectar
-
-    # tunnel = ngrok.connect(5090, "http",subdomain="graap")
-    try:
-        # Intentar obtener los túneles con pyngrok
-        tunnels = ngrok.get_tunnels()
-        if tunnels:
-            print("[+] Túneles activos:")
-            for tunnel in tunnels:
-                print(f" - Nombre: {tunnel.name}, URL: {tunnel.public_url}, Protocolo: {tunnel.proto}")
-        else:
-            print("[!] No hay túneles activos")
-    except PyngrokNgrokError as e:
-        pass
-        # print(f"[!] Error al obtener los túneles con pyngrok: {str(e)}")
-    except Exception as e:
-        pass
-        # print(f"[!] Ocurrió un error inesperado: {str(e)}")
-
-    print('[+] Corriendo Tunnel ngrok')
     
 def Servicios():
     global urlTunnel
