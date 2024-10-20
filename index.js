@@ -153,5 +153,55 @@ client.on('message', async message => {
 
 });
 
+client.on('message_create', async (message) => {
+    try {
+        // Verificar si el mensaje fue enviado por el propio bot
+        const isFromMe = message.fromMe;
+
+        // Procesar los comandos solo si el mensaje es enviado por el bot o por un suscriptor
+        if (isFromMe || suscriptores[message.from]) {
+            const contact = await message.getContact();
+            const contactName = contact.pushname || contact.notifyName || 'Undefined';
+
+            // Registrar el mensaje en el archivo de logs
+            utils.logMessageToFile(`By: ${contactName} Message: ${message.body}`);
+
+            // Procesar comandos
+            const parts = message.body.trim().split(' ');
+            const command = parts[0];
+            const arg = parts[1];
+
+            if (command === '/help') {
+                utils.help(message);
+                return;
+            }
+
+            if (command === '/lg' && !suscriptores[message.from]) {
+                suscriptores[message.from] = true;
+                guardarSuscriptores();
+                message.reply('Te has registrado correctamente.');
+                return;
+            }
+
+            if (command === '/i' && message.hasMedia) {
+                // Aquí iría el código para manejar el comando /i con media
+                // ...
+            } else if (['/s', '/d', '/r'].includes(command) && arg && /^\d{1,7}$/.test(arg)) {
+                // Aquí iría el código para manejar los comandos /s, /d y /r
+                // ...
+            } else {
+                message.reply('Comando no reconocido o argumentos inválidos.');
+            }
+        } else {
+            // Si el usuario no está registrado y el mensaje no es del bot, se le indica que debe registrarse
+            if (!isFromMe) {
+                message.reply('No estás registrado. Por favor, envía /lg para registrarte.');
+            }
+        }
+    } catch (error) {
+        console.error('Error en el manejador de mensajes:', error);
+    }
+});
+
 
 client.initialize();
