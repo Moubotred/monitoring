@@ -14,7 +14,7 @@ def apiUrl(sum_value):
 
 def apiDoc(sum_value):
     # endpoint = 'process_convert_pdf'
-    mensaje = Apis.Hasber_Sistema_Envios(sum_value)
+    mensaje = Rb.Hasber_Sistema_Envios(sum_value)
     # raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)    
     print(mensaje)
     
