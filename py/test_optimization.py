@@ -93,9 +93,7 @@ def pdf_converter(response, supply):
     result = response.json()
     result_url = result.get('result')
     url_ = Rb.UrlSubdoc(result_url)
-    print('....%')
     filename = Rb.FileWebDownloads(url_, supply)
-    print('........%')
     ff = Rb.ConvertPdf(filename)
     Rb.Templades(ff)
     return ff
@@ -194,35 +192,6 @@ def process_convert_pdf():
     filename = pdf_converter(response, supply)
     
     return jsonify({"result": filename})
-
-# endpoint para convertir el imagen a un pdf
-@app.route('/process_image_a_pdf', methods=['POST'])
-@measure_time
-def process_imagen_pdf():
-    data = request.json
-    supply = data.get('suministro')
-    if supply is None:
-        return jsonify({"error": "You must provide a supply."}), 400
-    
-    tunnel = Rb.Apilocalngrok()
-    # if tunnel is None:
-        # return jsonify({"error": "Ngrok is not running. Please ensure the Ngrok service is active."}), 503
-
-    try:
-        if tunnel != None:
-            suministro = Rb.GoogleLents(driver, wait, tunnel, supply)
-            response = requests.post("http://localhost:5000/process_convert_pdf", json={"suministro": suministro})
-            if response.status_code != 200:
-                return jsonify({"error": "Error processing the supply."}), response.status_code
-            result = response.json()
-            result_name = result.get('result')
-            return jsonify({"result":result_name})    
-        else:
-            print('[!] No se ejecutara la funcion GoogleLents hasta habilitar ngrok manualmente')
-            return jsonify({"error": "."}),500
-    except Exception as e:
-        app.logger.error(f"[!] Fallo al ejecutar GoogleLents: {str(e)}")
-        # return jsonify({"error": "Failed to process the image to PDF."}), 500
 
 @app.route('/')
 def index():
