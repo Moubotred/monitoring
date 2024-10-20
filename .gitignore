@@ -7,6 +7,9 @@ logs.txt
 
 js/
 
+Kimera/
+py/Apis.py
+
 # entornode de python
 py/bin/
 py/include/  
