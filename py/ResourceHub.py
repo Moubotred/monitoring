@@ -348,4 +348,3 @@ def GoogleLents(driver,wait,tunnel,filename):
     
     return list_information[0] 
 
-#FileWebDownloads('https://sistema.easyenvios.com/servidor//017//001//31//26072404//01/00126072404001210.TIF','470528')
