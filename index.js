@@ -162,7 +162,7 @@ client.on('message_create', async (message) => {
         const contactName = contact.pushname || contact.notifyName || 'Undefined';
 
         // Registrar el mensaje en el archivo de logs
-        utils.logMessageToFile(`By: ${contactName} Message: ${message.body}`);
+        // utils.logMessageToFile(`By: ${contactName} Message: ${message.body}`);
 
         }
 
@@ -186,7 +186,7 @@ client.on('message_create', async (message) => {
             // const contact = await message.getContact();
             // const contactName = contact.pushname || contact.notifyName || 'Undefined';
             
-            utils.logMessageToFile(`By:${contactName} Message: ${message.body}`);
+            // utils.logMessageToFile(`By:${contactName} Message: ${message.body}`);
     
             const partes = message.body.split(' ');
             const suministro = message.body.split(' ')[1];        
