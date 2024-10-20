@@ -84,7 +84,6 @@ function execution_cmd(suministro, mode, message) {
     if (typeof suministro !== 'string' || typeof mode !== 'string') {
         throw new Error('Los parámetros suministro y mode deben ser cadenas');
     }
-
     return new Promise((resolve, reject) => {
         exec(`python3 /home/${username}/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
