@@ -43,8 +43,8 @@ def apiRec(sum_value):
     None: Esta función aún no tiene implementación.
     """
     
-    # raw_url = Rb.ConsultaApiLds(sum_value)    
-    # print(raw_url)
+    raw_url = Rb.ConsultaApiLds(sum_value)    
+    print(raw_url)
 
 def main():
     """
