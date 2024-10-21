@@ -2,8 +2,8 @@ import argparse
 import ResourceHub as Rb  # Asumiendo que Rb es un módulo que has importado 
 import Apis
 
-ip = '161.132.51,35'
-port = '5000'
+ip = '161.132.51.35'
+port = '5000'   
 key_data = 'result'
 # http://localhost:5000/process_supply
 
