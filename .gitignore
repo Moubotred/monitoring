@@ -2,8 +2,6 @@
 node_modules/
 .wwebjs_auth/
 .wwebjs_cache/
-
-
 lib/
 lib64/
 bin/
