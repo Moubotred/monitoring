@@ -2,25 +2,10 @@
 node_modules/
 .wwebjs_auth/
 .wwebjs_cache/
-logs.txt
-*.json
 
-js/
 
-Kimera/
-py/Apis.py
-
-# entornode de python
-py/bin/
-py/include/  
-py/lib/  
-py/lib64/  
-py/__pycache__/
-pyvenv.cfg  
-
-py/lib64
-py/pdf/
-py/test.py
-py/tmp/
-py/share/
-suscriptores.json
+lib64/
+lib/
+bin/
+share/
+*.cfg
