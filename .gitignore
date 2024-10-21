@@ -9,4 +9,7 @@ share/
 *.cfg
 package-lock.json
 package.json
-Py/domain/__pycache__/banners.cpython-39.pyc
+Py/domain/__pycache__/comand.cpython-39.pyc
+Py/ports/__pycache__/
+Py/ports/dashboard/
+lib64
