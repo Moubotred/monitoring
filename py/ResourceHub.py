@@ -25,10 +25,10 @@ import platform
 import subprocess
 
 import sys
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
-# from BetaApiLds import api
+from BetaApiLds import api
 import shutil
 
 request_logs = []
