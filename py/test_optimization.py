@@ -137,7 +137,7 @@ def init_browser():
     """
     global driver, wait
     options = Options()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     driver = webdriver.Firefox(options=options)
     wait = WebDriverWait(driver, 60)
     try:

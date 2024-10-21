@@ -2,7 +2,7 @@ import argparse
 import ResourceHub as Rb  # Asumiendo que Rb es un módulo que has importado 
 import Apis
 
-ip = '161.132.51.35'
+ip = '127.0.0.1'
 port = '5000'
 key_data = 'result'
 # http://localhost:5000/process_supply
@@ -13,10 +13,10 @@ def apiUrl(sum_value):
     print(rs)
 
 def apiDoc(sum_value):
-    # endpoint = 'process_convert_pdf'
-    mensaje = Rb.Hasber_Sistema_Envios(sum_value)
-    # raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)    
-    print(mensaje)
+    endpoint = 'process_convert_pdf'
+    # mensaje = Rb.Hasber_Sistema_Envios(sum_value)
+    raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)    
+    print(raw_url)
     
 def apiImg(sum_value):
     """

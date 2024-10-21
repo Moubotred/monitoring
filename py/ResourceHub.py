@@ -25,9 +25,10 @@ import platform
 import subprocess
 
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from BetaApiLds import api
+
+# from BetaApiLds import api
 import shutil
 
 request_logs = []
@@ -85,6 +86,7 @@ def FileWebDownloads(url, suministro):
             with urllib.request.urlopen(urllib.request.Request(url)) as response, open(filename, "wb") as out_file:
                 data = response.read()
                 out_file.write(data)
+                out_file.close()
             return filename
         else:
             return None
@@ -102,11 +104,11 @@ def ConvertPdf(filename):
         doc.save(pdf_filename)
         return pdf_filename
     else:
-        return None
+        return False
 
 def Templades(pdf_filename):
     if pdf_filename:
-        path = f'/home/{getuser()}/monitoring/py/pdf'
+        path = f'/home/{getuser()}/Documents/monitoring/py/pdf'
         os.makedirs(path, exist_ok=True)
 
         shutil.move(pdf_filename, os.path.join(path, pdf_filename))
@@ -156,6 +158,9 @@ def ConsultaApiLds(suministro):
         os.makedirs(imagenes)
         ConsultaApiLds(suministro)
 
+import requests
+import urllib.request
+
 def Hasber_Sistema_Envios(suministro):
     # URL a la que se va a hacer la solicitud POST
     url = "https://hasbercourier.easyenvios.com/modulos/controlador/herramientas/con_cargosenvios.php?tabla=congrid_envio_seguimiento"
@@ -202,12 +207,16 @@ def Hasber_Sistema_Envios(suministro):
         data = response.json()
         try:
             # buscar clave de diccionario
-            if data['rows'][0]['artnombre'] == 'CARTAS / REEMPLAZO DE MEDIDOR EMPRESAS':
-                url_file = data['rows'][0]['imagen1']
+            filename = f'{suministro}.tif'
+            values_boolean = [data['rows'][i]['artnombre'] == 'CARTAS / REEMPLAZO DE MEDIDOR EMPRESAS' for i in range(len(data['rows']))]
+            if values_boolean:
+                url_file = data['rows'][values_boolean.index(True)]['imagen1']
                 FileWebDownloads(url_file,suministro)
-                ConvertPdf(suministro)
-                Templades(f"{suministro}.tif")
-                return suministro                    
+                filename = ConvertPdf(filename)
+                Templades(filename)
+            else:
+                return False
+
         except IndexError:
             return False
     else:
@@ -347,4 +356,3 @@ def GoogleLents(driver,wait,tunnel,filename):
     driver.switch_to.window(driver.window_handles[0])    
     
     return list_information[0] 
-
