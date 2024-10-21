@@ -1,6 +1,0 @@
-selenium
-flask
-aspose-words
-requests
-deprecated
-pyngrok
