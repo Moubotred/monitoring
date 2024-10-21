@@ -15,7 +15,7 @@ el cual es necesario para utilizar este bot.
         pass
     def SuscripcionExitosa(self,usuario):
         S_C_E = f"""
-Hola {usuario} Te has registrado correctamente [✅]
+Hola {usuario} Te has registrado correctamente
 🌟 te uniste al bot bienvenid@!
 [⚡️] PLAN: BASICO
 [🔒] ROL: USUARIO

@@ -2,9 +2,9 @@
 // tecnologías específicas (bases de datos, UI, servicios externos, etc.).
 
 const qrcode = require('qrcode-terminal');
-const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
-const adapter = require('../services/procesar_comando');
-const ProcesarComando = require('../services/procesar_comando');
+const { Client, LocalAuth, MessageMedia, MessageAck } = require('whatsapp-web.js');
+// const adapter = require('../services/procesar_comando');
+const ProcesarComando = require('../ports/procesar_comando');
 
 class WhatsAppClient {
     constructor() {
@@ -45,8 +45,24 @@ class WhatsAppClient {
     async onMessage(message) {
         const contact = await message.getContact();
         const contactName = contact.pushname || contact.notifyName || 'Undefined';
-        const command = message.id._serialized;
-        // Aquí puedes agregar la lógica para manejar el mensaje
+        const comando = message.body;
+        const usuarioId = message.from; // Asumiendo que 'from' es el ID del remitente
+
+        if (typeof comando === 'string' && comando.startsWith('/')) {
+            try {
+                const respuesta = await ProcesarComando(comando,contactName);
+
+                if (respuesta.imagen_url) {
+                    const media = await MessageMedia.fromUrl(respuesta.imagen_url);
+                    await this.sendMediaMessage(usuarioId, media);
+                }
+                
+                await this.sendMessage(usuarioId, respuesta);
+            } catch (error) {
+                console.error('Error al procesar el comando:', error);
+                await this.sendMessage(usuarioId, 'Lo siento, ocurrió un error al procesar tu comando.');
+            }
+        }
     }
 
     async sendMessage(to, message) {
@@ -60,6 +76,7 @@ class WhatsAppClient {
             throw error;
         }
     }
+
 
     initialize() {
         this.client.initialize();

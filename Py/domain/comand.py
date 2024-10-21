@@ -1,4 +1,4 @@
-from banners import msgBanner
+from domain.banners import msgBanner
 
 class Commands:  # He corregido el nombre de la clase
 

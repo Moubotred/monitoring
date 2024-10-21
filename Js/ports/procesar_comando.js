@@ -12,7 +12,19 @@ async function ProcesarComando(comando, usuarioId) {
             comando,
             usuario_id: usuarioId
         });
-        return response.data;
+
+
+        // Retornar la respuesta del servidor Flask
+        if (response.status === 200) {
+            return {
+                mensaje: response.data.mensaje,
+                imagen_url: response.data.imagen_url || null // Devolver imagen si está presente
+            };
+        } else {
+            throw new Error('Error en la respuesta del servidor Flask');
+        }
+
+
     } catch (error) {
         console.error(error);
         return { mensaje: 'Hubo un error al procesar tu solicitud.' };

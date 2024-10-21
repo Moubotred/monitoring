@@ -7,3 +7,6 @@ lib64/
 bin/
 share/
 *.cfg
+package-lock.json
+package.json
+Py/domain/__pycache__/banners.cpython-39.pyc
