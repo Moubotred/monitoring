@@ -108,7 +108,7 @@ def ConvertPdf(filename):
 
 def Templades(pdf_filename):
     if pdf_filename:
-        path = f'/home/{getuser()}/Documents/monitoring/py/pdf'
+        path = f'/home/{getuser()}/monitoring/py/pdf'
         os.makedirs(path, exist_ok=True)
 
         shutil.move(pdf_filename, os.path.join(path, pdf_filename))
