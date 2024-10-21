@@ -5,7 +5,7 @@ node_modules/
 
 
 lib/
-lib64/python3.9/site-packages
+lib64/
 bin/
 share/
 *.cfg
