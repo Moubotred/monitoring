@@ -24,11 +24,3 @@ py/test.py
 py/tmp/
 py/share/
 suscriptores.json
-
-BetaApiLds/__pycache__/
-BetaApiLds/auth_seeker.py
-BetaApiLds/auth_where.py
-BetaApiLds/test_hasber.py
-BetaApiLds/test_data_reniec.py
-*.png
-*.txt
