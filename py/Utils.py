@@ -1,6 +1,7 @@
 import argparse
 import ResourceHub as Rb  # Asumiendo que Rb es un módulo que has importado 
 # import Apis
+from Constant import mensajes as ms
 
 ip = '161.132.51.35'
 port = '5000'   
@@ -15,8 +16,12 @@ def apiUrl(sum_value):
 def apiDoc(sum_value):
     endpoint = 'process_convert_pdf'
     # mensaje = Rb.Hasber_Sistema_Envios(sum_value)
-    raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)    
-    print(raw_url)
+    raw_url = Rb.ConsultApi(ip, port, endpoint, key_data, sum_value)
+    if raw_url is False:
+        print(ms._Failed_)
+
+    if raw_url != False:
+        print(raw_url)
     
 def apiImg(sum_value):
     """
