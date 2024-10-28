@@ -13,3 +13,8 @@ class exp:
     contenedor = 'QeOavc'
     elementos = './/div[@dir="ltr"]'
     # tr = '//td[@field="estado_solo"]'
+
+class mensajes:
+    _Failed_ = """
+[ ❌] Suminstro no esta programado para remplazo
+"""
