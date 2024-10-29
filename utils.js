@@ -73,6 +73,11 @@ function sendfile(evalue,numero,message){
         message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envío exitoso ${evalue}`);
 
+    } else if (evalue.trim().endsWith('[')) {
+        // const imagePath = `${__dirname}/BetaApiLds/imagenes/${numero}.${evalue.trim().split('.').pop()}`;
+        // const image = MessageMedia.fromFilePath(imagePath);
+        message.reply(`${evalue}`);
+        // console.log(`ReponsePython: envío exitoso ${evalue}`);
         // else{
         //     message.reply(`Respuesta: ${stdout.trim()}`);
         
