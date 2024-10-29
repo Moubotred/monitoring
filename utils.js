@@ -59,10 +59,8 @@ function argument_management(partes,message){
 }
 
 function sendfile(evalue,numero,message){
-    if (evalue.trim() === 'suministro no existe en base de datos') {
-        message.reply(`Suministro No Existe`);
 
-    } else if (evalue.trim().endsWith('.pdf')) {
+    if (evalue.trim().endsWith('.pdf')) {
         const pdf = MessageMedia.fromFilePath(`${__dirname}/py/pdf/${numero}.pdf`);
         message.reply(`Respuesta: ${evalue}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envio existoso ${evalue}`);
@@ -73,15 +71,11 @@ function sendfile(evalue,numero,message){
         message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envío exitoso ${evalue}`);
 
-    } else if (evalue.trim().endsWith('[')) {
-        // const imagePath = `${__dirname}/BetaApiLds/imagenes/${numero}.${evalue.trim().split('.').pop()}`;
-        // const image = MessageMedia.fromFilePath(imagePath);
-        message.reply(`${evalue}`);
-        // console.log(`ReponsePython: envío exitoso ${evalue}`);
-        // else{
-        //     message.reply(`Respuesta: ${stdout.trim()}`);
-        
-        };
+    } else if (evalue.trim() === "[ ❌] Suminstro no esta programado para remplazo") {
+        message.reply(`${evalue}`)
+        console.log(`Respuesta:${evalue}`)
+        }
+    
     }
 
 function execution_cmd(suministro, mode, message) {
@@ -90,7 +84,7 @@ function execution_cmd(suministro, mode, message) {
         throw new Error('Los parámetros suministro y mode deben ser cadenas');
     }
     return new Promise((resolve, reject) => {
-        exec(`python3 /home/${username}/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
+        exec(`python3 /home/${username}/Documents/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error ejecutando el script: ${error.message}`);
                 reject(error);
