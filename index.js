@@ -125,9 +125,11 @@ client.on('message', async message => {
             }
     
             if (message.body.startsWith('/d ')) {
-    
+
+                console.log('[/] ejecutando comando')
                 const value = utils.execution_cmd(suministro,'apiDoc',message)
                     .then(resultado =>{
+                        console.log('[/] respondindo mensaje')
                         utils.sendfile(resultado,suministro,message)
                     })
     
