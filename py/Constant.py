@@ -16,5 +16,5 @@ class exp:
 
 class mensajes:
     _Failed_ = """
-[ ❌] Suminstro no esta programado para remplazo
+[ ❌] Suminstro no existe en sistema de envios
 """
