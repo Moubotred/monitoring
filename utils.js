@@ -84,7 +84,7 @@ function execution_cmd(suministro, mode, message) {
         throw new Error('Los parámetros suministro y mode deben ser cadenas');
     }
     return new Promise((resolve, reject) => {
-        exec(`python3 /home/${username}/Documents/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
+        exec(`python3 /home/${username}/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error ejecutando el script: ${error.message}`);
                 reject(error);
