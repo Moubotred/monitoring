@@ -71,7 +71,7 @@ function sendfile(evalue,numero,message){
         message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envío exitoso ${evalue}`);
 
-    } else if (evalue.trim() === "[ ❌] Suminstro no existe en sistema de envios") {
+    } else if (evalue.trim() === "[ ❌] Suminstro no programado para cambio de maximetro") {
         message.reply(`${evalue}`)
         console.log(`Respuesta:${evalue}`)
         }
