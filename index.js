@@ -124,7 +124,7 @@ client.on('message', async message => {
     
             }
     
-            if (message.body.startsWith('/d ')) {
+            if (message.body.startsWith('/p ')) {
 
                 const value = utils.execution_cmd(suministro,'apiDoc',message)
                     .then(resultado =>{

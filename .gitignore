@@ -31,4 +31,4 @@ suscriptores.json
 
 *.pdf
 *.png
-*.txt
+# *.txt
