@@ -54,14 +54,11 @@ async function localendpoint(endpoint, suministro) {
     }
   
     } catch {
-        const suministro = respuesta.suministro;
+        const detail = respuesta.detail;
         const elapsed = respuesta.elapsed;
         message.reply(`❌ status: fallo \n${detail}\n⏰ Tiempo: ${elapsed.toFixed(2)} s`);
     }
   }
-  
-
-
 
 
 function help(message) {

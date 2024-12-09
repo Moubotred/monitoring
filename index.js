@@ -124,17 +124,17 @@ client.on('message', async message => {
     
             }
     
-            if (message.body.startsWith('/p ')) {
+            // if (message.body.startsWith('/p ')) {
 
-                const value = utils.execution_cmd(suministro,'apiDoc',message)
-                    .then(resultado =>{
-                        utils.sendfile(resultado,suministro,message)
-                    })
+            //     const value = utils.execution_cmd(suministro,'apiDoc',message)
+            //         .then(resultado =>{
+            //             utils.sendfile(resultado,suministro,message)
+            //         })
     
-                    .catch(error =>{
-                        console.log(error);
-                    })
-            }        
+            //         .catch(error =>{
+            //             console.log(error);
+            //         })
+            // }        
 
             if (message.body.startsWith('/d')) {
     
