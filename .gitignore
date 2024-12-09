@@ -15,8 +15,12 @@ py/bin/
 py/include/  
 py/lib/  
 py/lib64/  
-py/__pycache__/
 pyvenv.cfg  
+
+py/utils/__pycache__
+py/syncro/__pycache__
+py/apis/__pycache__/
+py/__pycache__/
 
 py/lib64
 py/pdf/
@@ -25,10 +29,6 @@ py/tmp/
 py/share/
 suscriptores.json
 
-BetaApiLds/__pycache__/
-BetaApiLds/auth_seeker.py
-BetaApiLds/auth_where.py
-BetaApiLds/test_hasber.py
-BetaApiLds/test_data_reniec.py
+*.pdf
 *.png
 *.txt

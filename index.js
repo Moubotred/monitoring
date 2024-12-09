@@ -134,19 +134,35 @@ client.on('message', async message => {
                     .catch(error =>{
                         console.log(error);
                     })
-            }
-            
-            if (message.body.startsWith('/r ')) {
+            }        
+
+            if (message.body.startsWith('/d')) {
     
-                const value = utils.execution_cmd(suministro,'apiRec',message)
+                const value = utils.localendpoint('actividad',suministro)
                     .then(resultado =>{
-                        utils.sendfile(resultado,suministro,message)
+                        // console.log(resultado)
+                        utils.chunckis(resultado,message)
                     })
     
                     .catch(error =>{
                         console.log(error);
                     })
             }
+
+            if (message.body.startsWith('/r')) {
+    
+                const value = utils.localendpoint('recibo',suministro)
+                    .then(resultado =>{
+                        // console.log(resultado)
+                        utils.chunckis(resultado,message)
+                    })
+    
+                    .catch(error =>{
+                        console.log(error);
+                    })
+            }
+
+
         }
 
     }

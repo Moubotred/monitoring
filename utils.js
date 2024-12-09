@@ -1,12 +1,68 @@
 const {exec} = require('child_process');
 const fs = require('fs');
 const {MessageMedia } = require('whatsapp-web.js');
-
+const axios = require('axios');
 const path = require('path');
-
 const os = require('os');
 
+
 const username = os.userInfo().username;
+
+async function localendpoint(endpoint, suministro) {
+    const url = `http://127.0.0.1:8000/${endpoint}`;
+    const start = performance.now();
+  
+    try {
+      const response = await axios.get(url, { params: { suministro: suministro } });
+      const end = performance.now();
+      const elapsed = (end - start) / 1000; // Ahora en segundos
+      return {
+        suministro: response.data.suministro,
+        elapsed
+      };
+    } catch (error) {
+      const end = performance.now();
+      const elapsed = (end - start) / 1000; // Ahora en segundos
+    //   let detail = "Error desconocido";
+  
+      if (error.response && error.response.data && error.response.data.detail) {
+        detail = error.response.data.detail;
+      } else if (error.response && error.response.data) {
+        detail = JSON.stringify(error.response.data);
+      }
+  
+      return { detail, elapsed };
+    }
+  }
+  
+  function chunckis(respuesta, message) {
+    try {
+    const suministro = respuesta.suministro;
+    const elapsed = respuesta.elapsed;
+
+    if (suministro.endsWith('.pdf')) {
+        const pdfPath = `${__dirname}/descargas/pdf/${suministro}`;
+        const pdf = MessageMedia.fromFilePath(pdfPath);
+        message.reply(`✅ status: exito \n📌 mensaje: ${suministro}\n⏰ Tiempo: ${elapsed.toFixed(2)} s`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
+        console.log(`ReponsePython: envío exitoso ${suministro}`);
+
+    } else if (suministro.endsWith('.png')) {
+        const imagePath = `${__dirname}/descargas/png/${suministro}`;
+        const image = MessageMedia.fromFilePath(imagePath);
+        message.reply(`✅ status: exito \n📌 mensaje: ${suministro}\n⏰ Tiempo: ${elapsed.toFixed(2)} s`, undefined, { media: image, quotedMessageId: message.id._serialized });
+        console.log(`ReponsePython: envío exitoso ${suministro}`);
+    }
+  
+    } catch {
+        const suministro = respuesta.suministro;
+        const elapsed = respuesta.elapsed;
+        message.reply(`❌ status: fallo \n${detail}\n⏰ Tiempo: ${elapsed.toFixed(2)} s`);
+    }
+  }
+  
+
+
+
 
 function help(message) {
     // const banner = '🤖 Bienvenido al bot:\n\ncomandos:\n\n/lg suscribir al bot\n/s obtener url\n/d obtener pdf';
@@ -59,14 +115,13 @@ function argument_management(partes,message){
 }
 
 function sendfile(evalue,numero,message){
-
     if (evalue.trim().endsWith('.pdf')) {
-        const pdf = MessageMedia.fromFilePath(`${__dirname}/py/pdf/${numero}.pdf`);
+        const pdf = MessageMedia.fromFilePath(`${__dirname}/descargas/pdf/${numero}.pdf`);
         message.reply(`Respuesta: ${evalue}`, undefined, { media: pdf, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envio existoso ${evalue}`);
 
     } else if (evalue.trim().endsWith('.png')) {
-        const imagePath = `${__dirname}/BetaApiLds/imagenes/${numero}.${evalue.trim().split('.').pop()}`;
+        const imagePath = `${__dirname}/descargas/png/${numero}.${evalue.trim().split('.').pop()}`;
         const image = MessageMedia.fromFilePath(imagePath);
         message.reply(`Respuesta: ${evalue}`, undefined, { media: image, quotedMessageId: message.id._serialized });
         console.log(`ReponsePython: envío exitoso ${evalue}`);
@@ -84,7 +139,7 @@ function execution_cmd(suministro, mode, message) {
         throw new Error('Los parámetros suministro y mode deben ser cadenas');
     }
     return new Promise((resolve, reject) => {
-        exec(`python3 /home/${username}/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
+        exec(`python3 ~/Proyects/monitoring/py/Utils.py ${suministro} --mode ${mode}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error ejecutando el script: ${error.message}`);
                 reject(error);
@@ -140,5 +195,7 @@ module.exports = {
     argument_management,
     execution_cmd,
     sendfile,
-    logMessageToFile
+    logMessageToFile,
+    localendpoint,
+    chunckis
 };
