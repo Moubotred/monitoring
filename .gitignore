@@ -20,6 +20,8 @@ pyvenv.cfg
 py/utils/__pycache__
 py/syncro/__pycache__
 py/apis/__pycache__/
+py/utils/__pycache__/
+py/utils/syncro/__pycache__/
 py/__pycache__/
 
 py/lib64

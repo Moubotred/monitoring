@@ -2,6 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 from io import BytesIO
 import requests
+import httpx
+import asyncio
 
 def waifu(tipo:str,categotia:str):
     url = f"https://api.waifu.pics/{tipo}/{categotia}"
@@ -15,7 +17,7 @@ def waifu(tipo:str,categotia:str):
     if response.status_code != 200:
         return None
 
-def recibo_anime(suministro):
+async def recibo_anime(suministro):
     # Abrir la imagen base
     base_image = Image.open(f"{suministro}.png").convert("RGBA")
 
@@ -39,27 +41,39 @@ def recibo_anime(suministro):
     overlay = Image.new("RGBA", base_image.size, (255, 255, 255, 0))
     draw = ImageDraw.Draw(overlay)
 
-    logo_anime = waifu(tipo='sfw',categotia='neko')
-    logo = Image.open(BytesIO(logo_anime.content)).convert("RGBA")
-    logo = logo.resize((posicion['_resize'][0],posicion['_resize'][1]))  # Redimensionar si es necesario
-    overlay.paste(logo, (posicion['_posicion'][0],posicion['_posicion'][1]), logo)  # Pegar con transparencia
+    # logo_anime = waifu(tipo='sfw',categotia='neko')
 
-    # Crear la superposición (puede ser un rectángulo transparente con texto)
-    overlay_oficial = Image.new("RGBA", base_image.size, (255, 255, 255, 0))
-    draw = ImageDraw.Draw(overlay_oficial)
+    async with httpx.AsyncClient() as client:
+        tasks = [
+            client.get("https://raw.githubusercontent.com/Moubotred/Noman/refs/heads/main/fracazado.png"),
+            client.get(f"https://api.waifu.pics/sfw/neko")
+        ]
+
+        responses = await asyncio.gather(*[task for task in tasks])
+
+        solicitud = responses[1].json()['url']
+        response = await client.get(solicitud)
+
+        logo = Image.open(BytesIO(responses[0].content)).convert("RGBA")
+        logo = logo.resize((posicion['_resize'][0],posicion['_resize'][1]))  # Redimensionar si es necesario
+        overlay.paste(logo, (posicion['_posicion'][0],posicion['_posicion'][1]), logo)  # Pegar con transparencia
+
+        # Crear la superposición (puede ser un rectángulo transparente con texto)
+        overlay_oficial = Image.new("RGBA", base_image.size, (255, 255, 255, 0))
+        draw = ImageDraw.Draw(overlay_oficial)
 
 
-    # https://raw.githubusercontent.com/Moubotred/Noman/refs/heads/main/fracazado.png
-    # logo_oficial = os.path.join('/home/kimshizi/Proyects/miharu/experimental','anime','fracazado.png') 
+        # https://raw.githubusercontent.com/Moubotred/Noman/refs/heads/main/fracazado.png
+        # logo_oficial = os.path.join('/home/kimshizi/Proyects/miharu/experimental','anime','fracazado.png') 
 
-    logo_oficial = requests.get('https://raw.githubusercontent.com/Moubotred/Noman/refs/heads/main/fracazado.png')
-    logo = Image.open(BytesIO(logo_oficial.content)).convert("RGBA")
-    logo = logo.resize((posicion['_resize_anime'][0],posicion['_resize_anime'][1]))  # Redimensionar si es necesario
-    overlay_oficial.paste(logo, (posicion['_posicion_anime'][0],posicion['_posicion_anime'][1]), logo)  # Pegar con transparencia
+        # logo_oficial = requests.get('https://raw.githubusercontent.com/Moubotred/Noman/refs/heads/main/fracazado.png')
+        logo = Image.open(BytesIO(response.content)).convert("RGBA")
+        logo = logo.resize((posicion['_resize_anime'][0],posicion['_resize_anime'][1]))  # Redimensionar si es necesario
+        overlay_oficial.paste(logo, (posicion['_posicion_anime'][0],posicion['_posicion_anime'][1]), logo)  # Pegar con transparencia
 
-    # Combinar imágenes
-    combined = Image.alpha_composite(base_image, overlay)
-    final_image = Image.alpha_composite(combined, overlay_oficial)
+        # Combinar imágenes
+        combined = Image.alpha_composite(base_image, overlay)
+        final_image = Image.alpha_composite(combined, overlay_oficial)
 
-    # Guardar el resultado
-    final_image.save(f"{suministro}.png", format="PNG")
+        # Guardar el resultado
+        final_image.save(f"{suministro}.png", format="PNG")
