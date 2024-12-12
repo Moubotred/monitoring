@@ -11,7 +11,7 @@ proyecto = pydirecion.descargas
 descargas = os.path.join(home,proyecto)
 
 @app.get("/recibo")
-async def obtener_recibo(suministro: str):
+async def recibo(suministro: str):
     if not suministro:
         raise HTTPException(status_code=400, detail="No se proporcionó el número de suministro")
     
@@ -26,7 +26,7 @@ async def obtener_recibo(suministro: str):
         raise HTTPException(status_code=500, detail=resultado)
 
 @app.get("/actividad")
-async def obtener_recibo(suministro: str):
+async def actividad(suministro: str):
     if not suministro:
         raise HTTPException(status_code=400, detail="No se proporcionó el número de suministro")
     
