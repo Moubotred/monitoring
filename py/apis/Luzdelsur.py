@@ -5,7 +5,9 @@ import httpx
 import base64
 import aiofiles
 from utils.directorio import Directorio
-from utils.tuning import anime
+# from utils.tuning import anime
+from utils.syncro.syncro_tunneo import lolis
+
 from getpass import getuser
 import asyncio
 from constantes import pydirecion
@@ -51,7 +53,8 @@ async def LuzdelsurRecibo(suministro):
             archivo = f'{suministro}.png'
             async with aiofiles.open(archivo, "wb") as img_file:
                 await img_file.write(base64.b64decode(imagen_base64))
-                await anime(suministro)
+                # await anime(suministro)
+                await lolis(suministro)
                 await Directorio(archivo,directorio)
                 
             return archivo
