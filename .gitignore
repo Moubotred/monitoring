@@ -31,6 +31,8 @@ py/tmp/
 py/share/
 suscriptores.json
 
+py/utils/syncro/syncro_tunneo.py
+
 *.pdf
 *.png
 # *.txt

@@ -45,7 +45,7 @@ def animacion(imagen_base,imagen_superposicion,altura):
 
 async def lolis(suministro):    
 
-    # Abrir la imagen base
+    # Abrir la imagen b ase
     base = Image.open(f"{suministro}.png").convert("RGBA")
 
     altura,ancho = base.size
