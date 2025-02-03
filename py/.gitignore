@@ -1,1 +1,5 @@
 apis/libs.txt
+rungo/
+apis/Clasificador.py
+apis/labels.txt
+modelo_convertido.tflite
