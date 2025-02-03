@@ -10,6 +10,8 @@ js/
 Kimera/
 py/Apis.py
 
+lite/
+
 # entornode de python
 py/bin/
 py/include/  
