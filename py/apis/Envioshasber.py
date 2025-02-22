@@ -1,5 +1,6 @@
 import os
 import httpx
+import asyncio
 import aiofiles
 from utils.descargar import Descargar
 from utils.convertidor import ConvertirPDF
@@ -52,7 +53,8 @@ async def SistemaEnviosHasber(suministro:str) -> str:
 
                 # Extraer todas las filas de datos
                 rows = data['rows']
-                seleccionar = [row['artnombre'] == 'CARTAS / REEMPLAZO DE MEDIDOR EMPRESAS' for row in rows]
+                # seleccionar = [row['artnombre'] == 'CARTAS / REEMPLAZO DE MEDIDOR EMPRESAS' for row in rows]
+                seleccionar = [row['artnombre'] == 'CARTAS / MANTEIMIENTO PROGRAMADO' for row in rows]
 
                 if any(seleccionar):
                     descargas = pydirecion.descargas
